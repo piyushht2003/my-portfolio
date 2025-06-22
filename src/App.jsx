@@ -135,7 +135,10 @@ function App() {
 
   return (
     <>
-      <main className="relative w-full bg-black" style={{ scrollBehavior: "smooth" }}>
+      <main
+        className="relative w-full bg-black"
+        style={{ scrollBehavior: "smooth" }}
+      >
         <nav className="navbar fixed top-0 left-0 w-full bg-transparent text-white z-50 px-4 sm:px-6 py-3 flex items-center justify-between flex-wrap overflow-hidden">
           {/* Name Section */}
           <div
@@ -146,16 +149,16 @@ function App() {
             <p>Singh Thakur</p>
           </div>
 
-                <div className="absolute left-1/2 -translate-x-1/2 top-3 sm:top-4">
-                <button
-                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                  className="w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 text-xl sm:text-2xl md:text-3xl rounded-full border border-white flex items-center justify-center hover:bg-white hover:text-black transition duration-300"
-                >
-                  <i className="ri-arrow-up-long-line"></i>
-                </button>
-                </div>
+          <div className="absolute left-1/2 -translate-x-1/2 top-3 sm:top-4">
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 text-xl sm:text-2xl md:text-3xl rounded-full border border-white flex items-center justify-center hover:bg-white hover:text-black transition duration-300"
+            >
+              <i className="ri-arrow-up-long-line"></i>
+            </button>
+          </div>
 
-                {/* Resume Button */}
+          {/* Resume Button */}
           <a
             href="/resume.pdf"
             download
@@ -168,7 +171,10 @@ function App() {
           </a>
         </nav>
 
-        <div id="home" className="bg-zinc-950  w-full px-6 py-16 md:px-10 md:py-10">
+        <div
+          id="home"
+          className="bg-zinc-950  w-full px-6 py-16 md:px-10 md:py-10"
+        >
           <section className="w-full flex flex-col lg:flex-row justify-center relative items-center gap-10">
             <div className="w-full">
               <div
@@ -369,57 +375,56 @@ function App() {
         <Projects />
 
         <div
-  id="projects"
-  className="min-h-screen bg-zinc-900 w-full text-white py-12 px-4 sm:px-6 md:px-10"
->
-  <div className="text-start mb-12 sm:mb-20">
-    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-10 sm:mb-16">
-      <span className="text-[#f77409] drop-shadow-[0_2px_4px_rgba(247,116,9,0.7)]">
-        frontend{" "}
-      </span>
-      projects
-    </h1>
-  </div>
+          id="projects"
+          className="min-h-screen bg-zinc-900 w-full text-white py-12 px-4 sm:px-6 md:px-10"
+        >
+          <div className="text-start mb-12 sm:mb-20">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-10 sm:mb-16">
+              <span className="text-[#f77409] drop-shadow-[0_2px_4px_rgba(247,116,9,0.7)]">
+                frontend{" "}
+              </span>
+              projects
+            </h1>
+          </div>
 
-  <div className="w-full flex flex-col">
-    {/* Item 1 */}
-    <div className="grid grid-cols-1 sm:grid-cols-3 border-t border-white px-4 py-6 sm:py-4 justify-center items-center border-b font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl relative overflow-hidden group">
-      <div className="text-center sm:text-left">2024</div>
-      <div className="text-center z-10 group-hover:text-black transition-all duration-300">
-        Developer and Technology Job Simulation
-      </div>
-      <div className="text-center sm:text-right z-10 group-hover:text-black transition-all duration-300">
-        Accenture
-      </div>
-      <span className="absolute inset-0 bg-white scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-in-out z-0" />
-    </div>
+          <div className="w-full flex flex-col">
+            {/* Item 1 */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 border-t border-white px-4 py-6 sm:py-4 justify-center items-center border-b font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl relative overflow-hidden group">
+              <div className="text-center sm:text-left">2024</div>
+              <div className="text-center z-10 group-hover:text-black transition-all duration-300">
+                Developer and Technology Job Simulation
+              </div>
+              <div className="text-center sm:text-right z-10 group-hover:text-black transition-all duration-300">
+                Accenture
+              </div>
+              <span className="absolute inset-0 bg-white scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-in-out z-0" />
+            </div>
 
-    {/* Item 2 */}
-    <div className="grid grid-cols-1 sm:grid-cols-3 border-t border-white px-4 py-6 sm:py-4 border-b justify-center items-center font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl relative overflow-hidden group">
-      <div className="text-center sm:text-left">2024</div>
-      <div className="text-center z-10 group-hover:text-black transition-all duration-300">
-        Solutions Architecture Job Simulation
-      </div>
-      <div className="text-center sm:text-right z-10 group-hover:text-black transition-all duration-300">
-        AWS
-      </div>
-      <span className="absolute inset-0 bg-white scale-x-0 origin-right group-hover:scale-x-100 transition-transform duration-500 ease-in-out z-0" />
-    </div>
+            {/* Item 2 */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 border-t border-white px-4 py-6 sm:py-4 border-b justify-center items-center font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl relative overflow-hidden group">
+              <div className="text-center sm:text-left">2024</div>
+              <div className="text-center z-10 group-hover:text-black transition-all duration-300">
+                Solutions Architecture Job Simulation
+              </div>
+              <div className="text-center sm:text-right z-10 group-hover:text-black transition-all duration-300">
+                AWS
+              </div>
+              <span className="absolute inset-0 bg-white scale-x-0 origin-right group-hover:scale-x-100 transition-transform duration-500 ease-in-out z-0" />
+            </div>
 
-    {/* Item 3 */}
-    <div className="grid grid-cols-1 sm:grid-cols-3 border-t border-white px-4 py-6 sm:py-4 border-b justify-center items-center mb-12 sm:mb-20 font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl relative overflow-hidden group">
-      <div className="text-center sm:text-left">2024</div>
-      <div className="text-center z-10 group-hover:text-black transition-all duration-300">
-        Cybersecurity Job Simulation
-      </div>
-      <div className="text-center sm:text-right z-10 group-hover:text-black transition-all duration-300">
-        MasterCard
-      </div>
-      <span className="absolute inset-0 bg-white scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-in-out z-0" />
-    </div>
-  </div>
-</div>
-
+            {/* Item 3 */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 border-t border-white px-4 py-6 sm:py-4 border-b justify-center items-center mb-12 sm:mb-20 font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl relative overflow-hidden group">
+              <div className="text-center sm:text-left">2024</div>
+              <div className="text-center z-10 group-hover:text-black transition-all duration-300">
+                Cybersecurity Job Simulation
+              </div>
+              <div className="text-center sm:text-right z-10 group-hover:text-black transition-all duration-300">
+                MasterCard
+              </div>
+              <span className="absolute inset-0 bg-white scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-in-out z-0" />
+            </div>
+          </div>
+        </div>
 
         <div
           id="certificates"
