@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+[data-scroll-container] {
+  overflow: hidden;
+}
+
+main{
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
