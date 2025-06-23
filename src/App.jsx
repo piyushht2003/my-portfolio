@@ -18,7 +18,7 @@ function App() {
 
   useEffect(() => {
     lenis.current = new Lenis({
-      duration: 4,
+      duration: 1.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
       smoothTouch: false,
