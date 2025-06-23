@@ -10,56 +10,36 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import "remixicon/fonts/remixicon.css";
 import About from "./components/About";
-import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
+import Lenis from "@studio-freight/lenis";
 
 function App() {
-  const scrollRef = useRef(null);
-  const locoScroll = useRef(null);
+  const lenis = useRef(null); // already declared
 
   useEffect(() => {
-    if (!scrollRef.current) return;
-
-    locoScroll.current = new LocomotiveScroll({
-      el: scrollRef.current,
-      smooth: true,
-      lerp: 0.08,
-      multiplier: 1,
-      smartphone: {
-        smooth: true,
-      },
-      tablet: {
-        smooth: true,
-      },
+    lenis.current = new Lenis({
+      duration: 4,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      smoothTouch: false,
     });
 
+    function raf(time) {
+      lenis.current.raf(time); // ✅ use ref
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
     return () => {
-      if (locoScroll.current) locoScroll.current.destroy();
+      lenis.current.destroy();
     };
   }, []);
 
-  // GSAP Intro Animations
-  useEffect(() => {
-    const tl = gsap.timeline();
-
-    tl.fromTo(
-      ".navbar",
-      { opacity: 0, y: -50 },
-      { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
-    )
-      .fromTo(
-        "#home-left h1",
-        { x: -50, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
-      )
-      .fromTo("#home-left p", { x: -100, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5 })
-      .fromTo("#home-left h3", { x: -100, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5 })
-      .fromTo("#home-right", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5 });
-  }, []);
-
-  const handleScrollToTop = () => {
-    if (locoScroll.current) {
-      locoScroll.current.scrollTo(0, { duration: 1000 });
+  const scrollToTop = () => {
+    console.log("Scrolling to top...");
+    if (lenis.current) {
+      lenis.current.scrollTo(0); // ✅ now this will work
     }
   };
 
@@ -67,11 +47,9 @@ function App() {
 
   return (
     <>
-      <Navbar onScrollTop={handleScrollToTop} />
+      <Navbar onScrollTop={scrollToTop} />
 
       <main
-        ref={scrollRef}
-        data-scroll-container
         className="relative w-full bg-black"
         style={{ scrollBehavior: "smooth" }}
       >
@@ -95,7 +73,8 @@ function App() {
         >
           <div className="text-start mb-20">
             <h1 className="text-8xl font-bold">
-              here are some of my <span className="text-yellow-400">certifications</span>.
+              here are some of my{" "}
+              <span className="text-yellow-400">certifications</span>.
             </h1>
           </div>
 

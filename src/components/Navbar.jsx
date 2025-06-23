@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Navbar = ({ onScrollTop }) => {
   return (
@@ -15,6 +15,7 @@ const Navbar = ({ onScrollTop }) => {
       {/* Scroll To Top Button */}
       <div className="absolute left-1/2 -translate-x-1/2 top-3 sm:top-4">
         <button
+          data-lenis-prevent
           onClick={onScrollTop}
           className="w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 text-xl sm:text-2xl md:text-3xl rounded-full border border-white flex items-center justify-center hover:bg-white hover:text-black transition duration-300"
         >
