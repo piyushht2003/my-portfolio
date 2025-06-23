@@ -85,20 +85,28 @@ const Contact = () => {
       <h1 className="text-white font-bold text-4xl sm:text-4xl md:text-9xl text-center leading-snug">
         you can get in touch<br />
         with me via{" "}
-        <span className="text-[#FF6C6C] relative group cursor-pointer">
+        <a href="mailto:piyushsinghthakur128@gmail.com">
+          <span className="text-[#FF6C6C] relative group cursor-pointer">
           mail
           <span className="absolute left-0 top-1/2 w-full h-[2px] bg-current transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rotate-12"></span>
         </span>{" "}
+        </a>
+        
         or<br />
-        <span className="text-[#fbbf24] relative group cursor-pointer">
+        <a href="https://www.instagram.com/piyush_singh.01/">
+          <span className="text-[#fbbf24] relative group cursor-pointer">
           instagram
           <span className="absolute left-0 top-1/2 w-full h-[2px] bg-current transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rotate-12"></span>
         </span>{" "}
+        </a>
         or{" "}
+        <a href="https://www.linkedin.com/in/piyush-singh-thakur-4ab855231/">
+
         <span className="text-[#3b82f6] relative group cursor-pointer">
           linkedin
           <span className="absolute left-0 top-1/2 w-full h-[2px] bg-current transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rotate-12"></span>
-        </span>.
+        </span>
+        </a>.
       </h1>
 
       <p className="text-white mt-10 text-base sm:text-3xl text-center">
