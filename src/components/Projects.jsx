@@ -78,13 +78,13 @@ const Projects = () => {
       >
         <div className="text-start mb-12 sm:mb-20">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-10 sm:mb-16">
-            some of my <span className="text-[#f77409]">certificates </span>
+            Here are my <br /> <span className="text-[#f77409]">certificates </span>
           </h1>
         </div>
 
         <div className="w-full flex flex-col">
           {/* Item 1 */}
-          <div className="flex sm:grid-cols-3 border-t border-white px-4 py-6 sm:py-4 justify-between items-center border-b font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl relative overflow-hidden group">
+          <div className="flex sm:grid-cols-3 border-t border-white px-4 py-6 sm:py-8 justify-between items-center border-b font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl relative overflow-hidden group">
             <div className="text-center sm:text-left">2024</div>
             <div className="text-center z-10 group-hover:text-black md:flex sm:hidden hidden transition-all duration-300">
               Developer and Technology Job Simulation
@@ -96,7 +96,7 @@ const Projects = () => {
           </div>
 
           {/* Item 2 */}
-          <div className="flex sm:grid-cols-3 border-t border-white px-4 py-6 sm:py-4 justify-between items-center border-b font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl relative overflow-hidden group">
+          <div className="flex sm:grid-cols-3 border-t border-white px-4 py-6 sm:py-8 justify-between items-center border-b font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl relative overflow-hidden group">
             <div className="text-center sm:text-left">2024</div>
             <div className="text-center z-10 group-hover:text-black md:flex sm:hidden hidden transition-all duration-300">
               Cyber security Job Simulation 
@@ -108,7 +108,7 @@ const Projects = () => {
           </div>
 
           {/* Item 3 */}
-          <div className="flex sm:grid-cols-3 border-t border-white px-4 py-6 sm:py-4 justify-between items-center border-b font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl relative overflow-hidden group">
+          <div className="flex sm:grid-cols-3 border-t border-white px-4 py-6 sm:py-8 justify-between items-center border-b font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl relative overflow-hidden group">
             <div className="text-center sm:text-left">2024</div>
             <div className="text-center z-10 group-hover:text-black md:flex sm:hidden hidden transition-all duration-300">
               Solutions Architecture Job Simulation 

@@ -27,10 +27,10 @@ const About = () => {
               baseFrequency={0.02}
               filterSeed={7}
             >
-              <h2 className="text-2xl md:text-3xl lg:text-4xl leading-tight">
-                dev
+              <h2 className="text-2xl md:text-3xl lg:text-4xl opacity-50 leading-tight">
+                
                 <br />
-                Piyush
+                
               </h2>
             </DecayCard>
           </div>
