@@ -4,7 +4,7 @@ const Home = () => {
 
   const colors = ["text-rose-600", "text-yellow-300", "text-cyan-400"];
   const roles = [
-    "MERN Stack Developer",
+    "Frontend Developer",
     "Full Stack Developer",
     "UI/UX Designer",
   ];
