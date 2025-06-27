@@ -17,7 +17,7 @@ const Home = () => {
           id="home"
           className="bg-zinc-950 min-h-screen w-full  px-6 py-16 md:px-10   md:py-16 lg:px-20 lg:py-16 flex flex-col justify-center items-center"
         >
-          <div className="w-full max-w-7xl bg-[url('images/profile.png')] bg-center bg-cover bg-no-repeat bg-fixed bg-blend-overlay bg-zinc-900/50 rounded-4xl shadow-9xl p-6 md:p-10 lg:p-16 flex flex-col justify-center items-center">
+          <div className="w-full max-w-7xl bg-[url('/images/profile.png')] bg-center bg-cover bg-no-repeat bg-fixed bg-blend-overlay bg-zinc-900/50 rounded-4xl shadow-9xl p-6 md:p-10 lg:p-16 flex flex-col justify-center items-center">
 
           <section className="w-full flex flex-col lg:flex-row justify-center relative items-center gap-10">
             <div className="w-full">
