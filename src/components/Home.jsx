@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <div
           id="home"
-          className="bg-zinc-950  w-full px-6 py-16 md:px-10 md:py-10"
+          className="bg-zinc-950 min-h-screen w-full px-6 py-16 md:px-10 md:py-10"
         >
           <section className="w-full flex flex-col lg:flex-row justify-center relative items-center gap-10">
             <div className="w-full">

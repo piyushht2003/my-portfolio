@@ -90,7 +90,7 @@ const Skills = () => {
 
     <div className="bg-transparent border border-gray-500 rounded-lg flex items-center justify-center p-4">
       <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
+        src="https://icon.icepanel.io/Technology/png-shadow-512/Express.png"
         alt="Express"
         className="h-12 w-12 object-contain"
         title="Express"
@@ -99,9 +99,9 @@ const Skills = () => {
 
     <div className="bg-transparent border border-gray-500 rounded-lg flex items-center justify-center p-4">
       <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt6DXuvit57V1DmjnlLcwst4O-sTL5D37gIQ&s"
         alt="GitHub"
-        className="h-12 w-12 object-contain"
+        className="h-12 w-12 object-cover"
         title="GitHub"
       />
     </div>

@@ -67,7 +67,7 @@ function App() {
         <Skills />
         <Projects />
 
-        <div
+        {/* <div
           id="certificates"
           className="min-h-screen bg-[#242724] w-full text-white py-16 px-10"
         >
@@ -99,7 +99,7 @@ function App() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         <Contact />
         {/* <Footer /> */}
