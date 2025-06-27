@@ -15,13 +15,15 @@ const Home = () => {
   return (
     <div
           id="home"
-          className="bg-zinc-950 min-h-screen w-full px-6 py-16 md:px-10 md:py-16 lg:px-20 lg:py-16 flex flex-col justify-center items-center"
+          className="bg-zinc-950 min-h-screen w-full  px-6 py-16 md:px-10   md:py-16 lg:px-20 lg:py-16 flex flex-col justify-center items-center"
         >
+          <div className="w-full max-w-7xl bg-[url('images/profile.jpg')] bg-center bg-cover bg-no-repeat bg-fixed bg-blend-overlay bg-zinc-900/50 rounded-4xl shadow-9xl p-6 md:p-10 lg:p-16 flex flex-col justify-center items-center">
+
           <section className="w-full flex flex-col lg:flex-row justify-center relative items-center gap-10">
             <div className="w-full">
               <div
                 id="home-left"
-                className="flex flex-col text-white gap-4 p-6 md:p-16 lg:p-28 justify-center items-start"
+                className="flex flex-col text-white gap-4 p-6 md:p-16 lg:p-28 justify-center lg:items-start sm:items-center rounded-4xl shadow-9xl"
               >
                 <h1 className="text-5xl md:text-7xl lg:text-9xl mb-3 leading-tight">
                   Hi, I'm Piyush
@@ -46,18 +48,19 @@ const Home = () => {
             </div>
             <div
               id="home-right"
-              className="w-full h-auto lg:h-screen flex justify-center items-center"
+              className="w-full h-auto lg:h-screen  flex justify-center items-center"
             >
-              <div className="border rounded-4xl px-10 md:px-16 py-10 md:py-20 border-none bg-zinc-900 text-sky-400 shadow-9xl flex flex-col gap-4 justify-center items-start">
-                <h1 className="text-3xl md:text-5xl lg:text-6xl text-yellow-400">
+              <div className="border px-10 rounded-4xl md:px-16 py-10 md:py-20  text-sky-400 shadow-9xl flex flex-col gap-4 justify-center items-start">
+                {/* <h1 className="text-3xl md:text-5xl lg:text-6xl text-yellow-400">
                   <i className="ri-edit-circle-fill"></i>developer
                 </h1>
                 <span className="text-5xl md:text-7xl lg:text-9xl">
                   Portfolio
-                </span>
+                </span> */}
               </div>
             </div>
           </section>
+          </div>
         </div>
   )
 }
