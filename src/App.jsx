@@ -17,24 +17,27 @@ function App() {
   const lenis = useRef(null); // already declared
 
   useEffect(() => {
-    lenis.current = new Lenis({
-      duration: 1.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      smoothTouch: false,
-    });
+  lenis.current = new Lenis({
+    duration: 1.2, // Slightly lower for better mobile performance
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    smoothTouch: true, // ✅ Enable smooth scrolling on smartphones
+    touchMultiplier: 1.5, // ✅ Make touch scroll more responsive
+    gestureOrientation: 'vertical', // Ensure it's vertical scroll only
+  });
 
-    function raf(time) {
-      lenis.current.raf(time); // ✅ use ref
-      requestAnimationFrame(raf);
-    }
-
+  function raf(time) {
+    lenis.current.raf(time);
     requestAnimationFrame(raf);
+  }
 
-    return () => {
-      lenis.current.destroy();
-    };
-  }, []);
+  requestAnimationFrame(raf);
+
+  return () => {
+    lenis.current.destroy();
+  };
+}, []);
+
 
   const scrollToTop = () => {
     console.log("Scrolling to top...");
