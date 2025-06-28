@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Typewriter from "typewriter-effect";
 const Home = () => {
-  const colors = ["text-rose-600", "text-yellow-300", "text-cyan-400"];
+  const colors = ["text-zinc-400"];
   const roles = [
     "Frontend Developer",
     "Full Stack Developer",
@@ -21,10 +21,10 @@ const Home = () => {
           {/* Left Section */}
           <div
             id="home-left"
-            className="flex flex-col text-white gap-4 p-4  w-full sm:p-8 md:p-16 lg:p-28 justify-start items-start rounded-3xl shadow-xl"
+            className="flex flex-col text-white gap-4 p-4 w-full sm:p-8 md:p-16 lg:p-28 justify-start items-start rounded-3xl shadow-xl"
           >
-            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-9xl mb-2 sm:mb-3 leading-tight text-left">
-              Hi, I'm Piyush
+            <h1 className="text-2xl sm:text-5xl md:text-7xl lg:text-9xl mb-2 sm:mb-3 leading-tight text-left">
+              Hi, I'm <br /><span className="text-rose-500">Piyush</span> 
             </h1>
             <h3 className="text-base sm:text-xl md:text-3xl lg:text-4xl flex flex-wrap gap-2 text-zinc-400 font-bold text-left">
               <Typewriter
