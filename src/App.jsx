@@ -12,6 +12,7 @@ import "remixicon/fonts/remixicon.css";
 import About from "./components/About";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import Lenis from "@studio-freight/lenis";
+import Hero from "./components/Hero";
 
 function App() {
   const lenis = useRef(null); // already declared
@@ -56,15 +57,16 @@ function App() {
         className="relative w-full bg-black"
         style={{ scrollBehavior: "smooth" }}
       >
+        <Hero />
         <Home />
 
-        <div className="bg-zinc-900 z-10 py-10">
+        {/* <div className="bg-zinc-900 z-10 py-10">
           <ScrollVelocity
-            texts={["Piyush??"]}
+            texts={["who is it??"]}
             velocity={velocity}
-            className="custom-scroll-text text-yellow-400 mb-3"
+            className="custom-scroll-text text-red-500 hidden md:flex  mb-3"
           />
-        </div>
+        </div> */}
 
         <About />
         <Skills />
