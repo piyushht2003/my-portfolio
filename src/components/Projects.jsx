@@ -8,7 +8,7 @@ const Projects = () => {
       className="bg-zinc-900 text-white py-20 px-4 sm:px-8 md:px-10 lg:px-16"
     >
       <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-12 font-bold leading-tight">
-        Some of my <span className="text-rose-500">projects</span>
+        Some of my <span className="text-rose-500"><br />projects</span>
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
