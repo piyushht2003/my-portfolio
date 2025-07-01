@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 
 const Navbar = ({ onScrollTop }) => {
   return (
@@ -25,7 +25,7 @@ const Navbar = ({ onScrollTop }) => {
 
       {/* Resume Button */}
       <a
-        href="/resume.pdf"
+        href="/resume/resume.pdf"
         download
         className="mt-4 sm:mt-0 px-3 sm:px-5 py-2 sm:py-3 text-sm sm:text-base rounded-full font-semibold text-white bg-rose-500
         shadow-[0_0_10px_2px_rgba(244,63,94,0.5)]
