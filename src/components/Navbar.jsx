@@ -1,8 +1,22 @@
-import React, { use } from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 
 const Navbar = ({ onScrollTop }) => {
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(
+      navRef.current,
+      { y: -50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, ease: "power2.out" }
+    );
+  }, []);
+
   return (
-    <nav className="navbar fixed top-0 left-0 w-full bg-transparent text-white z-50 px-4 sm:px-6 py-3 flex items-center justify-between flex-wrap overflow-hidden">
+    <nav
+      ref={navRef}
+      className="navbar fixed top-0 left-0 w-full bg-transparent text-white z-50 px-4 sm:px-6 py-3 flex items-center justify-between flex-wrap overflow-hidden"
+    >
       {/* Name Section */}
       <div
         id="nav-p"

@@ -1,23 +1,96 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import DecayCard from "./Animation/DecayCard";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+  const headingRef = useRef(null);
+  const bioRef = useRef(null);
+  const cardRef = useRef(null);
+  const buttonsRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(
+      headingRef.current,
+      { y: 50, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: "top 80%",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      bioRef.current,
+      { x: 100, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: bioRef.current,
+          start: "top 85%",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      cardRef.current,
+      { x: -100, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: "top 85%",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      buttonsRef.current,
+      { scale: 0.8, opacity: 0 },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: buttonsRef.current,
+          start: "top 90%",
+        },
+      }
+    );
+  }, []);
+
   return (
     <section
       id="about"
       className="bg-zinc-900 w-full px-4 sm:px-6 md:px-10 py-2"
     >
       <div className="about-section flex flex-col">
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-orange-400 font-bold mt-10 mb-10">
+        <h1
+          ref={headingRef}
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-orange-400 font-bold mt-10 mb-10"
+        >
           About Me
         </h1>
+
         <div
           id="decay"
           className="flex flex-col lg:flex-row gap-10 mb-4 text-white justify-between items-center"
         >
-          <div className="w-full lg:w-1/2 hidden md:flex justify-center">
+          {/* Decay Card */}
+          <div
+            ref={cardRef}
+            className="w-full lg:w-1/2 hidden md:flex justify-center"
+          >
             <DecayCard
               width={400}
               height={450}
@@ -27,14 +100,15 @@ const About = () => {
               baseFrequency={0.02}
               filterSeed={7}
             >
-              <h2 className="text-2xl md:text-3xl lg:text-4xl opacity-50 leading-tight">
-                
-                <br />
-                
-              </h2>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl opacity-50 leading-tight"></h2>
             </DecayCard>
           </div>
-          <div className="bio w-full lg:w-1/2 px-2 sm:px-4 md:px-8 lg:px-10">
+
+          {/* Bio */}
+          <div
+            ref={bioRef}
+            className="bio w-full lg:w-1/2 px-2 sm:px-4 md:px-8 lg:px-10"
+          >
             <p className="text-lg md:text-xl text-zinc-400 text-justify lg:text-2xl font-semibold tracking-wide mb-4">
               Hi, I’m Piyush Singh Thakur — a passionate Full Stack Web
               Developer and UI/UX enthusiast with hands-on experience in
@@ -46,43 +120,46 @@ const About = () => {
               communities. Let’s build something amazing together.
             </p>
 
+            {/* Education & Location */}
             <div className="w-full flex flex-col gap-6 justify-start items-start mt-10">
               <div className="flex flex-col sm:flex-row justify-between w-full gap-2">
-    <h3 className="text-base sm:text-lg md:text-xl flex items-center gap-2">
-      <i className="ri-graduation-cap-line text-orange-400 text-xl sm:text-2xl"></i>
-      <span className="text-zinc-300 font-sans font-medium sm:font-semibold">
-        Education - B.Tech in Computer Science, RGPV
-      </span>
-    </h3>
-    <span className="text-base text-gray-400 sm:text-gray-100 mt-1 sm:mt-0">
-      2021 - 2025
-    </span>
-  </div>
+                <h3 className="text-base sm:text-lg md:text-xl flex items-center gap-2">
+                  <i className="ri-graduation-cap-line text-orange-400 text-xl sm:text-2xl"></i>
+                  <span className="text-zinc-300 font-sans font-medium sm:font-semibold">
+                    Education - B.Tech in Computer Science, RGPV
+                  </span>
+                </h3>
+                <span className="text-base text-gray-400 sm:text-gray-100 mt-1 sm:mt-0">
+                  2021 - 2025
+                </span>
+              </div>
 
               <div className="flex flex-col sm:flex-row justify-between w-full gap-2 sm:gap-0 mt-4">
-  <h3 className="text-base sm:text-lg md:text-xl font-medium sm:font-semibold flex items-center gap-2">
-    <i className="ri-code-s-slash-line text-orange-400 text-xl sm:text-2xl"></i>
-
-    Web Developer Intern | Nivss Heritage
-  </h3>
-  <span className="text-sm sm:text-base text-gray-400 sm:text-gray-100 mt-1 sm:mt-0">
-    2024 - 2025
-  </span>
-</div>
-
+                <h3 className="text-base sm:text-lg md:text-xl font-medium sm:font-semibold flex items-center gap-2">
+                  <i className="ri-code-s-slash-line text-orange-400 text-xl sm:text-2xl"></i>
+                  Web Developer Intern | Nivss Heritage
+                </h3>
+                <span className="text-sm sm:text-base text-gray-400 sm:text-gray-100 mt-1 sm:mt-0">
+                  2024 - 2025
+                </span>
+              </div>
 
               <h3 className="text-base sm:text-lg md:text-xl flex items-center gap-2 mt-2">
-  <i className="ri-home-line text-orange-400 text-xl sm:text-2xl"></i>
-  <span className="text-gray-300 sm:text-white font-sans font-medium sm:font-semibold">
-    Madhya Pradesh, India
-  </span>
-</h3>
-
+                <i className="ri-home-line text-orange-400 text-xl sm:text-2xl"></i>
+                <span className="text-gray-300 sm:text-white font-sans font-medium sm:font-semibold">
+                  Madhya Pradesh, India
+                </span>
+              </h3>
             </div>
           </div>
         </div>
 
-        <div id="buttons" className="flex justify-around mt-20 mb-10 flex-wrap">
+        {/* Buttons */}
+        <div
+          ref={buttonsRef}
+          id="buttons"
+          className="flex justify-around mt-20 mb-10 flex-wrap"
+        >
           <a
             href="mailto:piyushsinghthakur128@gmail.com"
             className="px-5 py-3 rounded-full text-base font-bold text-white bg-[#0ea5e9] shadow-[0_0_20px_4px_rgba(14,165,233,0.6)] hover:shadow-[0_0_25px_6px_rgba(14,165,233,0.8)] transition"

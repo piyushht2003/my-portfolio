@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import Typewriter from "typewriter-effect";
 
 const Home = () => {
@@ -8,6 +9,24 @@ const Home = () => {
     "Full Stack Developer",
     "UI/UX Designer",
   ];
+
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+
+  useEffect(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power2.out", duration: 1 } });
+
+    tl.fromTo(
+      leftRef.current,
+      { x: -100, opacity: 0 },
+      { x: 0, opacity: 1, delay: 1 } // Wait for navbar to finish
+    ).fromTo(
+      rightRef.current,
+      { x: 100, opacity: 0 },
+      { x: 0, opacity: 1 },
+      "-=0.8" // Overlap a bit for smooth flow
+    );
+  }, []);
 
   function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
@@ -24,6 +43,7 @@ const Home = () => {
             {/* Left Section */}
             <div
               id="home-left"
+              ref={leftRef}
               className="flex flex-col text-white gap-4 p-4 w-full sm:p-8 md:p-16 lg:p-28 justify-start items-start rounded-3xl shadow-xl"
             >
               <h1 className="text-2xl sm:text-5xl md:text-7xl lg:text-9xl mb-2 sm:mb-3 leading-tight text-left">
@@ -50,10 +70,10 @@ const Home = () => {
             {/* Right Section */}
             <div
               id="home-right"
+              ref={rightRef}
               className="w-full h-auto flex justify-center items-center mt-6 lg:mt-0"
             >
               <div className="px-4 sm:px-8 md:px-16 py-6 sm:py-10 md:py-20 flex flex-col gap-4 justify-center items-start">
-                {/* Optional right section content */}
                 <div className="w-full flex items-center justify-center p-10 border-2 border-zinc-700 bg-transparent rounded-3xl shadow-lg">
                   <div className="max-w-lg">
                     <h2 className="text-2xl font-semibold text-cyan-500 mb-4">
