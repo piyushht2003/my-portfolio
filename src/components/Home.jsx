@@ -38,7 +38,7 @@ const Home = () => {
         id="home"
         className="bg-zinc-950 min-h-screen w-full px-4 py-10 md:px-10 md:py-16 lg:px-20 lg:py-16 flex flex-col justify-center items-center"
       >
-        <div className="w-full max-w-7xl bg-[url('/images/background.jpeg')] bg-left bg-cover bg-no-repeat bg-scroll sm:bg-fixed bg-blend-overlay bg-zinc-900/80  rounded-3xl shadow-2xl px-4 py-8 md:p-10 lg:p-4 flex flex-col justify-center items-center">
+        <div className="w-full max-w-7xl bg-[url('https://www.wallpaperflare.com/static/999/280/939/sky-planet-comet-space-wallpaper.jpg')] bg-left bg-cover bg-no-repeat bg-scroll sm:bg-fixed bg-blend-overlay bg-zinc-900/80  rounded-3xl shadow-2xl px-4 py-8 md:p-10 lg:p-4 flex flex-col justify-center items-center">
           <section className="w-full flex flex-col lg:flex-row justify-start items-center gap-6 md:gap-10">
             {/* Left Section */}
             <div
