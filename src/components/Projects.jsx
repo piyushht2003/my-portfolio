@@ -5,27 +5,77 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
-  const headingRef = useRef(null);
+  const fullStackHeadingRef = useRef(null);
+  const frontendHeadingRef = useRef(null);
+  const certificateHeadingRef = useRef(null);
+  const fullStackCardsRef = useRef([]);
   const projectCardsRef = useRef([]);
   const certItemsRef = useRef([]);
 
   useEffect(() => {
-    // Animate heading
+    // Animate FullStack heading
     gsap.fromTo(
-      headingRef.current,
+      fullStackHeadingRef.current,
       { y: 50, opacity: 0 },
       {
         y: 0,
         opacity: 1,
         duration: 1,
         scrollTrigger: {
-          trigger: headingRef.current,
+          trigger: fullStackHeadingRef.current,
           start: "top 80%",
         },
       }
     );
 
-    // Animate each project card
+    // Animate Frontend heading
+    gsap.fromTo(
+      frontendHeadingRef.current,
+      { y: 50, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: frontendHeadingRef.current,
+          start: "top 80%",
+        },
+      }
+    );
+
+    gsap.fromTo(
+  certificateHeadingRef.current,
+  { y: 50, opacity: 0 },
+  {
+    y: 0,
+    opacity: 1,
+    duration: 1,
+    scrollTrigger: {
+      trigger: certificateHeadingRef.current,
+      start: "top 80%",
+    },
+  }
+);
+
+
+    // Animate FullStack project cards
+    gsap.fromTo(
+      fullStackCardsRef.current,
+      { opacity: 0, scale: 0.9 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: fullStackCardsRef.current[0],
+          start: "top 90%",
+        },
+      }
+    );
+
+    // Animate Frontend project cards
     gsap.fromTo(
       projectCardsRef.current,
       { opacity: 0, scale: 0.9 },
@@ -83,6 +133,16 @@ const Projects = () => {
     },
   ];
 
+  const fullStack = [
+    {
+      title: "QuickStay",
+      img: "images/quickstay.png",
+      desc: "A Hotel management application where you can book your hotel rooms and manage your hotel business.",
+      github: "https://github.com/piyushht2003/hotel-management-app",
+      live: "https://quickstay-rose.vercel.app/",
+    },
+  ];
+
   const certificates = [
     {
       year: "2024",
@@ -102,86 +162,141 @@ const Projects = () => {
   ];
 
   return (
-    <div
-      id="projects"
-      className="bg-zinc-900 text-white py-20 px-4 sm:px-8 md:px-10 lg:px-16"
-    >
-      {/* Projects Section */}
-      <h1
-        ref={headingRef}
-        className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-12 font-bold leading-tight"
-      >
-        Some of my <span className="text-rose-500"><br />projects</span>
-      </h1>
+    <>
+      {/* FullStack Projects Section */}
+      <div id="projects" className="bg-zinc-900 text-white py-20 px-4 sm:px-8 md:px-10 lg:px-16">
+        <h1
+          ref={fullStackHeadingRef}
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-12 font-bold leading-tight"
+        >
+          FullStack <span className="text-sky-500"><br />projects</span>
+        </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-        {projects.map((project, i) => (
-          <div
-            key={i}
-            ref={(el) => (projectCardsRef.current[i] = el)}
-            className="relative bg-zinc-900 border border-zinc-700 p-5 rounded-2xl shadow-lg group hover:bg-zinc-800 transition-all duration-300"
-          >
-            <img
-              src={project.img}
-              alt={project.title}
-              className="rounded-xl mb-4 w-full h-48 object-cover object-bottom"
-            />
-            <h2 className="text-xl md:text-2xl font-semibold group-hover:text-white">
-              {project.title}
-            </h2>
-            <div className="opacity-0 group-hover:opacity-100 text-sm mt-2 text-zinc-200 group-hover:text-zinc-500 transition-all duration-300">
-              {project.desc}
-            </div>
-            <div className="mt-6 flex justify-between">
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white group-hover:text-zinc-400 font-semibold underline"
-              >
-                GitHub
-              </a>
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white group-hover:text-zinc-400 font-semibold underline"
-              >
-                Live
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Certificates Section */}
-      <div className="bg-zinc-900 w-full text-white py-12 mt-20 px-4 sm:px-6">
-        <div className="text-start mb-12 sm:mb-20">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-10 sm:mb-16">
-            Here are my <br /> <span className="text-[#f77409]">certificates </span>
-          </h1>
-        </div>
-
-        <div className="w-full flex flex-col">
-          {certificates.map((cert, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-20 gap-8 md:gap-10">
+          {fullStack.map((project, i) => (
             <div
               key={i}
-              ref={(el) => (certItemsRef.current[i] = el)}
-              className="flex sm:grid-cols-3 border-t border-white px-4 py-6 sm:py-8 justify-between items-center border-b font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl relative overflow-hidden group"
+              ref={(el) => (fullStackCardsRef.current[i] = el)}
+              className="relative bg-zinc-900 border border-zinc-700 p-5 rounded-2xl shadow-lg group hover:bg-zinc-800 transition-all duration-300"
             >
-              <div className="text-center sm:text-left">{cert.year}</div>
-              <div className="text-center z-10 group-hover:text-black md:flex sm:hidden hidden transition-all duration-300">
-                {cert.title}
+              <img
+                src={project.img}
+                alt={project.title}
+                className="rounded-xl mb-4 w-full h-48 object-cover object-bottom"
+              />
+              <h2 className="text-xl md:text-2xl font-semibold group-hover:text-white">
+                {project.title}
+              </h2>
+              <div className="opacity-0 group-hover:opacity-100 text-sm mt-2 text-zinc-200 group-hover:text-zinc-500 transition-all duration-300">
+                {project.desc}
               </div>
-              <div className="text-center sm:text-right z-10 group-hover:text-black transition-all duration-300">
-                {cert.company}
+              <div className="mt-6 flex justify-between">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white group-hover:text-zinc-400 font-semibold underline"
+                >
+                  GitHub
+                </a>
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white group-hover:text-zinc-400 font-semibold underline"
+                >
+                  Live
+                </a>
               </div>
-              <span className="absolute inset-0 bg-white scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-in-out z-0" />
             </div>
           ))}
         </div>
       </div>
-    </div>
+
+      {/* Frontend Projects Section */}
+      <div className="bg-zinc-950 text-white py-20 px-4 sm:px-8 md:px-10 lg:px-16">
+        <h1
+          ref={frontendHeadingRef}
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-12 font-bold leading-tight"
+        >
+          Frontend <span className="text-rose-500"><br />projects</span>
+        </h1>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-20 gap-8 md:gap-10">
+          {projects.map((project, i) => (
+            <div
+              key={i}
+              ref={(el) => (projectCardsRef.current[i] = el)}
+              className="relative bg-zinc-900 border border-zinc-700 p-5 rounded-2xl shadow-lg group hover:bg-zinc-800 transition-all duration-300"
+            >
+              <img
+                src={project.img}
+                alt={project.title}
+                className="rounded-xl mb-4 w-full h-48 object-cover object-bottom"
+              />
+              <h2 className="text-xl md:text-2xl font-semibold group-hover:text-white">
+                {project.title}
+              </h2>
+              <div className="opacity-0 group-hover:opacity-100 text-sm mt-2 text-zinc-200 group-hover:text-zinc-500 transition-all duration-300">
+                {project.desc}
+              </div>
+              <div className="mt-6 flex justify-between">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white group-hover:text-zinc-400 font-semibold underline"
+                >
+                  GitHub
+                </a>
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white group-hover:text-zinc-400 font-semibold underline"
+                >
+                  Live
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Certificates Section */}
+      <div
+        className="bg-zinc-900 text-white py-10 px-4 sm:px-8 md:px-10 lg:px-16"
+      >
+        <div className="bg-zinc-900 w-full text-white py-12 mb-20 px-4 sm:px-6">
+          <div className="text-start mb-12 sm:mb-20">
+            <h1 
+            ref={certificateHeadingRef}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-10 sm:mb-16">
+              Here are my <br /> <span className="text-[#f77409]">certificates</span>
+            </h1>
+          </div>
+
+          <div className="w-full flex flex-col">
+            {certificates.map((cert, i) => (
+              <div
+                key={i}
+                ref={(el) => (certItemsRef.current[i] = el)}
+                className="flex sm:grid-cols-3 border-t border-white px-4 py-6 sm:py-8 justify-between items-center border-b font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl relative overflow-hidden group"
+              >
+                <div className="text-center sm:text-left">{cert.year}</div>
+                <div className="text-center z-10 group-hover:text-black md:flex sm:hidden hidden transition-all duration-300">
+                  {cert.title}
+                </div>
+                <div className="text-center sm:text-right z-10 group-hover:text-black transition-all duration-300">
+                  {cert.company}
+                </div>
+                <span className="absolute inset-0 bg-white scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-in-out z-0" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

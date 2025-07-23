@@ -359,7 +359,6 @@ const Hyperspeed = ({ effectOptions = {
           alpha: true
         });
         this.renderer.setSize(container.offsetWidth, container.offsetHeight, false);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
         this.composer = new EffectComposer(this.renderer);
         container.append(this.renderer.domElement);
 
@@ -1162,13 +1161,15 @@ const Hyperspeed = ({ effectOptions = {
 
   return (
     <>
+    <div className="w-full min-h-screen relative">
+
       <div className="absolute top-0 left-0 z-50 p-4 py-20">
-        <section className="w-full flex flex-col lg:flex-row justify-start items-center gap-6 md:gap-10">
+        <section className="w-full flex flex-col lg:flex-row lg:justify-center lg:items-center justify-center items-center gap-6 md:gap-10">
             {/* Left Section */}
             <div
               id="home-left"
               ref={leftRef}
-              className="flex flex-col text-white gap-4 p-4 w-full sm:p-8 md:p-16 lg:p-28 justify-start items-start rounded-3xl shadow-xl"
+              className="flex flex-col text-white gap-4 p-4 w-full sm:p-8 md:p-16 lg:p-28 justify-center items-center rounded-3xl shadow-xl"
             >
               <h1 className="text-5xl sm:text-5xl md:text-7xl lg:text-9xl mb-2 sm:mb-3 leading-tight text-left">
                 Hi, I'm <br />
@@ -1215,7 +1216,8 @@ const Hyperspeed = ({ effectOptions = {
             </div>
           </section>
       </div>
-      <div id="lights" className="w-full min-h-screen relative" ref={hyperspeed}></div>
+      <div id="lights" className="w-full h-full absolute z-2" ref={hyperspeed}></div>
+    </div>
     </>
   );
 }
