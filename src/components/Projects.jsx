@@ -118,19 +118,20 @@ const Projects = () => {
       live: "https://work-track-employee-management-syst.vercel.app/",
     },
     {
+      title: "Zentry - The Metagame",
+      img: "images/zentry.png",
+      desc: "The world's largest shared adventure. This website is themed as an epic MMORPG that unites players from countless games and platforms.",
+      github: "https://github.com/piyushht2003/Awwards",
+      live: "https://zentry-the-metagame.vercel.app/",
+    },
+    {
       title: "Lazarev Clone",
       img: "images/laravez.png",
       desc: "An award winning website Larazev clone to showcase the my animation ability.",
       github: "https://github.com/piyushht2003/Lazarev",
       live: "https://lazarev-gray-sigma.vercel.app/",
     },
-    {
-      title: "Time-Capsule | Personal Blog",
-      img: "images/Time-capsule.png",
-      desc: "A personal blog website where I post my thoughts, experiences, and insights throughout my journey.",
-      github: "https://github.com/piyushht2003/Time-capsule",
-      live: "https://time-capsule-tau.vercel.app/",
-    },
+    
   ];
 
   const fullStack = [
@@ -232,7 +233,7 @@ const Projects = () => {
               <img
                 src={project.img}
                 alt={project.title}
-                className="rounded-xl mb-4 w-full h-48 object-cover object-bottom"
+                className="rounded-xl mb-4 w-full h-48 object-cover object-center"
               />
               <h2 className="text-xl md:text-2xl font-semibold group-hover:text-white">
                 {project.title}
