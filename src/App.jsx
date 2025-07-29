@@ -1,17 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import ScrollVelocity from "./components/Animation/ScrollVelocity";
-import Ribbons from "./components/Animation/Ribbons";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "@studio-freight/lenis";
+
+// Components
 import Navbar from "./components/Navbar";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
-import "remixicon/fonts/remixicon.css";
 import About from "./components/About";
-import "locomotive-scroll/dist/locomotive-scroll.css";
-import Lenis from "@studio-freight/lenis";
 import Hero from "./components/Hero";
 import HyperSpeed from "./components/Animation/HyperSpeed";
 import Education from "./components/Education";
@@ -19,142 +18,105 @@ import Stats from "./components/Stats";
 import Certificate from "./components/Certificate";
 import ErrorBoundary from "./components/ErrorBoundary";
 
+// Styles
+import "remixicon/fonts/remixicon.css";
+
+gsap.registerPlugin(ScrollTrigger);
+
 function App() {
-  const lenis = useRef(null); // already declared
+  const lenis = useRef(null);
 
   useEffect(() => {
-  lenis.current = new Lenis({
-    duration: 1.2, // Slightly lower for better mobile performance
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true,
-    smoothTouch: true, // ✅ Enable smooth scrolling on smartphones
-    touchMultiplier: 1.5, // ✅ Make touch scroll more responsive
-    gestureOrientation: 'vertical', // Ensure it's vertical scroll only
-  });
+    // Initialize Lenis
+    lenis.current = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      smoothTouch: true,
+      touchMultiplier: 1.0, // Reduced for better mobile control
+      gestureOrientation: "vertical",
+    });
 
-  function raf(time) {
-    lenis.current.raf(time);
-    requestAnimationFrame(raf);
-  }
+    // Lenis scroll event updates ScrollTrigger
+    lenis.current.on("scroll", ScrollTrigger.update);
 
-  requestAnimationFrame(raf);
+    // Use gsap's ticker to drive Lenis raf
+    gsap.ticker.add((time) => {
+      lenis.current.raf(time * 1000); // time in milliseconds
+    });
 
-  return () => {
-    lenis.current.destroy();
-  };
-}, []);
+    // Disable lag smoothing for better sync
+    gsap.ticker.lagSmoothing(0);
 
+    return () => {
+      lenis.current.destroy();
+      gsap.ticker.remove(lenis.current.raf);
+    };
+  }, []);
 
   const scrollToTop = () => {
-    console.log("Scrolling to top...");
     if (lenis.current) {
-      lenis.current.scrollTo(0); // ✅ now this will work
+      lenis.current.scrollTo(0);
     }
   };
-
-  const velocity = 100;
 
   return (
     <>
       <Navbar onScrollTop={scrollToTop} />
-
-      <main
-        className="relative w-full bg-black"
-        style={{ scrollBehavior: "smooth" }}
-      >
-        <ErrorBoundary />
-        <HyperSpeed
-          effectOptions={{
-            onSpeedUp: () => { },
-            onSlowDown: () => { },
-            distortion: 'turbulentDistortion',
-            length: 400,
-            roadWidth: 10,
-            islandWidth: 2,
-            lanesPerRoad: 4,
-            fov: 90,
-            fovSpeedUp: 150,
-            speedUp: 2,
-            carLightsFade: 0.4,
-            totalSideLightSticks: 20,
-            lightPairsPerRoadWay: 40,
-            shoulderLinesWidthPercentage: 0.05,
-            brokenLinesWidthPercentage: 0.1,
-            brokenLinesLengthPercentage: 0.5,
-            lightStickWidth: [0.12, 0.5],
-            lightStickHeight: [1.3, 1.7],
-            movingAwaySpeed: [60, 80],
-            movingCloserSpeed: [-120, -160],
-            carLightsLength: [400 * 0.03, 400 * 0.2],
-            carLightsRadius: [0.05, 0.14],
-            carWidthPercentage: [0.3, 0.5],
-            carShiftX: [-0.8, 0.8],
-            carFloorSeparation: [0, 5],
-            colors: {
-              roadColor: 0x080808,
-              islandColor: 0x0a0a0a,
-              background: 0x000000,
-              shoulderLines: 0xFFFFFF,
-              brokenLines: 0xFFFFFF,
-              leftCars: [0xD856BF, 0x6750A2, 0xC247AC],
-              rightCars: [0x03B3C3, 0x0E5EA5, 0x324555],
-              sticks: 0x03B3C3,
-            }
-          }}
-        />
-        {/* <Hero /> */}
-        {/* <Home /> */}
-
-        {/* <div className="bg-zinc-900 z-10 py-10">
-          <ScrollVelocity
-            texts={["who is it??"]}
-            velocity={velocity}
-            className="custom-scroll-text text-red-500 hidden md:flex  mb-3"
+      <main className="relative w-full bg-black text-white">
+        <ErrorBoundary>
+          {/* Animated background effect */}
+          <HyperSpeed
+            effectOptions={{
+              onSpeedUp: () => {},
+              onSlowDown: () => {},
+              distortion: "turbulentDistortion",
+              length: 400,
+              roadWidth: 10,
+              islandWidth: 2,
+              lanesPerRoad: 4,
+              fov: 90,
+              fovSpeedUp: 150,
+              speedUp: 2,
+              carLightsFade: 0.4,
+              totalSideLightSticks: 20,
+              lightPairsPerRoadWay: 40,
+              shoulderLinesWidthPercentage: 0.05,
+              brokenLinesWidthPercentage: 0.1,
+              brokenLinesLengthPercentage: 0.5,
+              lightStickWidth: [0.12, 0.5],
+              lightStickHeight: [1.3, 1.7],
+              movingAwaySpeed: [60, 80],
+              movingCloserSpeed: [-120, -160],
+              carLightsLength: [400 * 0.03, 400 * 0.2],
+              carLightsRadius: [0.05, 0.14],
+              carWidthPercentage: [0.3, 0.5],
+              carShiftX: [-0.8, 0.8],
+              carFloorSeparation: [0, 5],
+              colors: {
+                roadColor: 0x080808,
+                islandColor: 0x0a0a0a,
+                background: 0x000000,
+                shoulderLines: 0xffffff,
+                brokenLines: 0xffffff,
+                leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
+                rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
+                sticks: 0x03b3c3,
+              },
+            }}
           />
-        </div> */}
 
-        <About />
-        <Skills />
-        <Education />
-        <Projects />
-        <Stats />
-        <Certificate />
-        {/* <div
-          id="certificates"
-          className="min-h-screen bg-[#242724] w-full text-white py-16 px-10"
-        >
-          <div className="text-start mb-20">
-            <h1 className="text-8xl font-bold">
-              here are some of my{" "}
-              <span className="text-yellow-400">certifications</span>.
-            </h1>
-          </div>
-
-          <div className="w-full flex flex-col">
-            {[
-              ["Developer and Technology Job Simulation", "Accenture"],
-              ["Solutions Architecture Job Simulation", "AWS"],
-              ["Cybersecurity Job Simulation", "MasterCard"],
-            ].map(([title, company], i) => (
-              <div
-                key={i}
-                className="grid grid-cols-3 border-t border-white px-4 py-4 justify-center items-center border-b font-semibold text-4xl relative overflow-hidden group"
-              >
-                <div>2024</div>
-                <div className="text-center z-10 group-hover:text-black transition-all duration-300">
-                  {title}
-                </div>
-                <div className="text-right z-10 group-hover:text-black transition-all duration-300">
-                  {company}
-                </div>
-                <span className="absolute inset-0 bg-white scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-in-out z-0" />
-              </div>
-            ))}
-          </div>
-        </div> */}
-
-        <Contact />
-        {/* <Footer /> */}
+          {/* Main sections */}
+          {/* <Hero /> */}
+          <About />
+          <Skills />
+          <Education />
+          <Projects />
+          <Stats />
+          <Certificate />
+          <Contact />
+          {/* <Footer /> */}
+        </ErrorBoundary>
       </main>
     </>
   );

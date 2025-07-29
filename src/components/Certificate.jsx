@@ -5,30 +5,45 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
-  const fullStackHeadingRef = useRef(null);
-  const frontendHeadingRef = useRef(null);
   const certificateHeadingRef = useRef(null);
-  const fullStackCardsRef = useRef([]);
-  const projectCardsRef = useRef([]);
   const certItemsRef = useRef([]);
 
   useEffect(() => {
-    // Animate certificates
-    gsap.fromTo(
-      certItemsRef.current,
-      { x: -50, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 0.6,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: certItemsRef.current[0],
-          start: "top 90%",
-        },
-      }
-    );
-  }, []);
+  // Animate certificates heading
+  gsap.fromTo(
+    certificateHeadingRef.current,
+    { y: 80, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: certificateHeadingRef.current,
+        start: "top 85%",
+      },
+    }
+  );
+
+  // Animate certificates list
+  gsap.fromTo(
+    certItemsRef.current,
+    { y: 50, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: certItemsRef.current[0],
+        start: "top 85%",
+      },
+    }
+  );
+}, []);
+
+
 
 
   const certificates = [

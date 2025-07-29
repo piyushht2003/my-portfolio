@@ -7,66 +7,37 @@ gsap.registerPlugin(ScrollTrigger);
 const Projects = () => {
   const fullStackHeadingRef = useRef(null);
   const frontendHeadingRef = useRef(null);
-  const certificateHeadingRef = useRef(null);
   const fullStackCardsRef = useRef([]);
   const projectCardsRef = useRef([]);
-  const certItemsRef = useRef([]);
 
   useEffect(() => {
-    // Animate FullStack heading
-    gsap.fromTo(
-      fullStackHeadingRef.current,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        scrollTrigger: {
-          trigger: fullStackHeadingRef.current,
-          start: "top 80%",
-        },
-      }
-    );
+    const animateSection = (trigger, target) => {
+      gsap.fromTo(
+        target,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger,
+            start: "top 80%",
+          },
+        }
+      );
+    };
 
-    // Animate Frontend heading
-    gsap.fromTo(
-      frontendHeadingRef.current,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        scrollTrigger: {
-          trigger: frontendHeadingRef.current,
-          start: "top 80%",
-        },
-      }
-    );
+    animateSection(fullStackHeadingRef.current, fullStackHeadingRef.current);
+    animateSection(frontendHeadingRef.current, frontendHeadingRef.current);
 
-    gsap.fromTo(
-  certificateHeadingRef.current,
-  { y: 50, opacity: 0 },
-  {
-    y: 0,
-    opacity: 1,
-    duration: 1,
-    scrollTrigger: {
-      trigger: certificateHeadingRef.current,
-      start: "top 80%",
-    },
-  }
-);
-
-
-    // Animate FullStack project cards
     gsap.fromTo(
       fullStackCardsRef.current,
-      { opacity: 0, scale: 0.9 },
+      { opacity: 0, scale: 0.95 },
       {
         opacity: 1,
         scale: 1,
         duration: 0.8,
-        stagger: 0.2,
+        stagger: 0.15,
         ease: "power2.out",
         scrollTrigger: {
           trigger: fullStackCardsRef.current[0],
@@ -75,15 +46,14 @@ const Projects = () => {
       }
     );
 
-    // Animate Frontend project cards
     gsap.fromTo(
       projectCardsRef.current,
-      { opacity: 0, scale: 0.9 },
+      { opacity: 0, scale: 0.95 },
       {
         opacity: 1,
         scale: 1,
         duration: 0.8,
-        stagger: 0.2,
+        stagger: 0.15,
         ease: "power2.out",
         scrollTrigger: {
           trigger: projectCardsRef.current[0],
@@ -104,7 +74,7 @@ const Projects = () => {
     {
       title: "Zentry - The Metagame",
       img: "images/zentry.png",
-      desc: "The world's largest shared adventure. This website is themed as an epic MMORPG that unites players from countless games and platforms.",
+      desc: "The world's largest shared adventure. This website is themed as an epic MMORPG that unites players.",
       github: "https://github.com/piyushht2003/Awwards",
       live: "https://zentry-the-metagame.vercel.app/",
     },
@@ -115,7 +85,6 @@ const Projects = () => {
       github: "https://github.com/piyushht2003/Lazarev",
       live: "https://lazarev-gray-sigma.vercel.app/",
     },
-    
   ];
 
   const fullStack = [
@@ -128,125 +97,74 @@ const Projects = () => {
     },
   ];
 
-  const certificates = [
-    {
-      year: "2024",
-      title: "Developer and Technology Job Simulation",
-      company: "Accenture",
-    },
-    {
-      year: "2024",
-      title: "Cyber security Job Simulation",
-      company: "MasterCard",
-    },
-    {
-      year: "2024",
-      title: "Solutions Architecture Job Simulation",
-      company: "AWS APAC",
-    },
-  ];
+  const Card = ({ data, innerRef }) => (
+    <div
+      ref={innerRef}
+      className="relative bg-zinc-900 border border-zinc-700 p-5 rounded-2xl shadow-md group transform transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-2xl hover:bg-zinc-800"
+    >
+      <img
+        src={data.img}
+        alt={data.title}
+        className="rounded-xl mb-4 w-full h-48 object-cover object-bottom group-hover:brightness-110 transition-all duration-300"
+      />
+      <h2 className="text-xl md:text-2xl font-semibold text-white group-hover:text-zinc-200 transition-colors duration-300">
+        {data.title}
+      </h2>
+      <p className="opacity-0 group-hover:opacity-100 text-sm mt-2 text-zinc-400 transition-opacity duration-500">
+        {data.desc}
+      </p>
+      <div className="mt-6 flex justify-between">
+        <a
+          href={data.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white group-hover:text-zinc-300 font-semibold underline transition-all duration-300"
+        >
+          GitHub
+        </a>
+        <a
+          href={data.live}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white group-hover:text-zinc-300 font-semibold underline transition-all duration-300"
+        >
+          Live
+        </a>
+      </div>
+    </div>
+  );
 
   return (
     <>
-      {/* FullStack Projects Section */}
-      <div id="projects" className="bg-zinc-900 text-white py-20 px-4 sm:px-8 md:px-10 lg:px-16">
+      {/* FullStack Projects */}
+      <section id="projects" className="bg-zinc-900 text-white py-20 px-4 sm:px-8 md:px-10 lg:px-16">
         <h1
           ref={fullStackHeadingRef}
           className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-12 font-bold leading-tight"
         >
-          FullStack <span className="text-sky-500"><br />projects</span>
+          FullStack <span className="text-sky-500 block">projects</span>
         </h1>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-20 gap-8 md:gap-10">
-          {fullStack.map((project, i) => (
-            <div
-              key={i}
-              ref={(el) => (fullStackCardsRef.current[i] = el)}
-              className="relative bg-zinc-900 border border-zinc-700 p-5 rounded-2xl shadow-lg group hover:bg-zinc-800 transition-all duration-300"
-            >
-              <img
-                src={project.img}
-                alt={project.title}
-                className="rounded-xl mb-4 w-full h-48 object-cover object-bottom"
-              />
-              <h2 className="text-xl md:text-2xl font-semibold group-hover:text-white">
-                {project.title}
-              </h2>
-              <div className="opacity-0 group-hover:opacity-100 text-sm mt-2 text-zinc-200 group-hover:text-zinc-500 transition-all duration-300">
-                {project.desc}
-              </div>
-              <div className="mt-6 flex justify-between">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white group-hover:text-zinc-400 font-semibold underline"
-                >
-                  GitHub
-                </a>
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white group-hover:text-zinc-400 font-semibold underline"
-                >
-                  Live
-                </a>
-              </div>
-            </div>
+          {fullStack.map((proj, i) => (
+            <Card key={i} data={proj} innerRef={(el) => (fullStackCardsRef.current[i] = el)} />
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Frontend Projects Section */}
-      <div className="bg-zinc-950 text-white py-20 px-4 sm:px-8 md:px-10 lg:px-16">
+      {/* Frontend Projects */}
+      <section className="bg-zinc-950 text-white py-20 px-4 sm:px-8 md:px-10 lg:px-16">
         <h1
           ref={frontendHeadingRef}
           className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-12 font-bold leading-tight"
         >
-          Frontend <span className="text-rose-500"><br />projects</span>
+          Frontend <span className="text-rose-500 block">projects</span>
         </h1>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-20 gap-8 md:gap-10">
-          {projects.map((project, i) => (
-            <div
-              key={i}
-              ref={(el) => (projectCardsRef.current[i] = el)}
-              className="relative bg-zinc-900 border border-zinc-700 p-5 rounded-2xl shadow-lg group hover:bg-zinc-800 transition-all duration-300"
-            >
-              <img
-                src={project.img}
-                alt={project.title}
-                className="rounded-xl mb-4 w-full h-48 object-cover object-center"
-              />
-              <h2 className="text-xl md:text-2xl font-semibold group-hover:text-white">
-                {project.title}
-              </h2>
-              <div className="opacity-0 group-hover:opacity-100 text-sm mt-2 text-zinc-200 group-hover:text-zinc-500 transition-all duration-300">
-                {project.desc}
-              </div>
-              <div className="mt-6 flex justify-between">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white group-hover:text-zinc-400 font-semibold underline"
-                >
-                  GitHub
-                </a>
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white group-hover:text-zinc-400 font-semibold underline"
-                >
-                  Live
-                </a>
-              </div>
-            </div>
+          {projects.map((proj, i) => (
+            <Card key={i} data={proj} innerRef={(el) => (projectCardsRef.current[i] = el)} />
           ))}
         </div>
-      </div>
+      </section>
     </>
   );
 };
