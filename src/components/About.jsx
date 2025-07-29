@@ -59,11 +59,11 @@ const About = () => {
 
           {/* Bio Content */}
           <div ref={bioRef} className="w-full lg:w-1/2 px-2 sm:px-4 md:px-8 lg:px-10">
-            <p className="text-lg md:text-xl text-zinc-300 text-justify lg:text-2xl font-medium tracking-wide mb-4">
-               <span className="text-5xl text-sky-400">Hi, I’m Piyush Singh Thakur</span>  a Full Stack Web Developer with a knack for building intuitive, fast, and responsive web applications. My focus lies in crafting seamless user experiences with clean, scalable code.
+            <p className="text-lg md:text-xl text-zinc-500 text-justify lg:text-2xl font-medium tracking-wide mb-4">
+               <span className="text-5xl text-gray-300">Hi, I’m Piyush Singh Thakur</span>  a Full Stack Web Developer with a knack for building intuitive, fast, and responsive web applications. My focus lies in crafting seamless user experiences with clean, scalable code.
             </p>
-            <p className="text-lg md:text-xl text-zinc-300 text-justify lg:text-2xl font-medium tracking-wide">
-              With hands-on experience in <span className="text-emerald-400">MERN stack</span>, <span className="text-amber-400">REST APIs</span>, and <span className="text-rose-400">UI/UX</span> design, I love exploring new technologies and contributing to open-source projects. I'm currently sharpening my skills in Java and aiming to crack top tech companies like Google.
+            <p className="text-lg md:text-xl text-zinc-500 text-justify lg:text-2xl font-medium tracking-wide">
+              With hands-on experience in <span className="text-gray-400">MERN stack, REST APIs, and UI/UX design,</span> I love exploring new technologies and contributing to open-source projects. I'm currently sharpening my skills in Java and aiming to crack top tech companies like Google.
             </p>
 
             {/* Info Boxes */}
@@ -71,13 +71,13 @@ const About = () => {
               <div className="flex justify-between text-sm sm:text-base md:text-lg">
                 <span className="flex items-center gap-2">
                   <i className="ri-graduation-cap-line text-rose-400 text-xl"></i>
-                  <span>B.Tech in Computer Science, RGPV</span>
+                  <span className="text-gray-400">B.Tech in Computer Science, RGPV</span>
                 </span>
                 <span className="text-gray-400">2021 - 2025</span>
               </div>
 
               <div className="flex justify-between text-sm sm:text-base md:text-lg">
-                <span className="flex items-center gap-2">
+                <span className="flex items-center text-gray-400 gap-2">
                   <i className="ri-code-s-slash-line text-rose-400 text-xl"></i>
                   Web Developer Intern | Nivss Heritage
                 </span>
@@ -86,7 +86,7 @@ const About = () => {
 
               <div className="flex items-center gap-2 text-sm sm:text-base md:text-lg">
                 <i className="ri-home-line text-rose-400 text-xl"></i>
-                <span>Madhya Pradesh, India</span>
+                <span className="text-gray-400">Madhya Pradesh, India</span>
               </div>
             </div>
           </div>
