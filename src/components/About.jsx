@@ -12,144 +12,82 @@ const About = () => {
   const buttonsRef = useRef(null);
 
   useEffect(() => {
-    gsap.fromTo(
-      headingRef.current,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        scrollTrigger: {
-          trigger: headingRef.current,
-          start: "top 80%",
-        },
-      }
-    );
+    const fadeIn = (ref, direction = "y", distance = 50, start = "top 85%") => {
+      const from = direction === "y" ? { y: distance, opacity: 0 } : { x: distance, opacity: 0 };
+      const to = direction === "y" ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 };
 
-    gsap.fromTo(
-      bioRef.current,
-      { x: 100, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 1,
+      gsap.fromTo(ref.current, from, {
+        ...to,
+        duration: 1.2,
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: bioRef.current,
-          start: "top 85%",
+          trigger: ref.current,
+          start,
         },
-      }
-    );
+      });
+    };
 
-    gsap.fromTo(
-      cardRef.current,
-      { x: -100, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 1,
-        scrollTrigger: {
-          trigger: cardRef.current,
-          start: "top 85%",
-        },
-      }
-    );
-
-    gsap.fromTo(
-      buttonsRef.current,
-      { scale: 0.8, opacity: 0 },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 1,
-        scrollTrigger: {
-          trigger: buttonsRef.current,
-          start: "top 90%",
-        },
-      }
-    );
+    fadeIn(headingRef);
+    fadeIn(bioRef, "x", 100);
+    fadeIn(cardRef, "x", -100);
+    fadeIn(buttonsRef, "y", 50, "top 90%");
   }, []);
 
   return (
-    <section
-      id="about"
-      className="bg-zinc-900 w-full px-4 sm:px-6 md:px-10 py-2"
-    >
+    <section id="about" className="bg-zinc-900 w-full px-4 sm:px-6 md:px-10 py-16">
       <div className="about-section flex flex-col">
         <h1
           ref={headingRef}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-orange-400 font-bold mt-10 mb-10"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-amber-400 font-extrabold mt-10 mb-10"
         >
-          About Me
+          <span className="text-white">About</span> Me
         </h1>
 
-        <div
-          id="decay"
-          className="flex flex-col lg:flex-row gap-10 mb-4 text-white justify-between items-center"
-        >
-          {/* Decay Card */}
-          <div
-            ref={cardRef}
-            className="w-full lg:w-1/2 hidden md:flex justify-center"
-          >
+        <div className="flex flex-col lg:flex-row gap-10 text-white justify-between items-center">
+          {/* Decay Card - Optional Visual Flair */}
+          <div ref={cardRef} className="w-full lg:w-1/2 hidden md:flex justify-center">
             <DecayCard
               width={400}
               height={450}
               image="https://avatars.githubusercontent.com/piyushht2003"
-              className="mx-auto hidden md:flex my-8"
+              className="mx-auto my-8"
               textClassName="text-white drop-shadow-md"
               baseFrequency={0.02}
               filterSeed={7}
-            >
-              <h2 className="text-2xl md:text-3xl lg:text-4xl opacity-50 leading-tight"></h2>
-            </DecayCard>
+            />
           </div>
 
-          {/* Bio */}
-          <div
-            ref={bioRef}
-            className="bio w-full lg:w-1/2 px-2 sm:px-4 md:px-8 lg:px-10"
-          >
-            <p className="text-lg md:text-xl text-zinc-400 text-justify lg:text-2xl font-semibold tracking-wide mb-4">
-              Hi, I’m Piyush Singh Thakur — a passionate Full Stack Web
-              Developer and UI/UX enthusiast with hands-on experience in
-              building fast, responsive, and scalable web applications.
+          {/* Bio Content */}
+          <div ref={bioRef} className="w-full lg:w-1/2 px-2 sm:px-4 md:px-8 lg:px-10">
+            <p className="text-lg md:text-xl text-zinc-300 text-justify lg:text-2xl font-medium tracking-wide mb-4">
+               <span className="text-5xl text-sky-400">Hi, I’m Piyush Singh Thakur</span>  a Full Stack Web Developer with a knack for building intuitive, fast, and responsive web applications. My focus lies in crafting seamless user experiences with clean, scalable code.
             </p>
-            <p className="text-lg md:text-xl text-zinc-400 text-justify lg:text-2xl font-semibold tracking-wide">
-              When I’m not coding, you’ll find me exploring new design trends,
-              contributing to open-source, or helping others grow through tech
-              communities. Let’s build something amazing together.
+            <p className="text-lg md:text-xl text-zinc-300 text-justify lg:text-2xl font-medium tracking-wide">
+              With hands-on experience in <span className="text-emerald-400">MERN stack</span>, <span className="text-amber-400">REST APIs</span>, and <span className="text-rose-400">UI/UX</span> design, I love exploring new technologies and contributing to open-source projects. I'm currently sharpening my skills in Java and aiming to crack top tech companies like Google.
             </p>
 
-            {/* Education & Location */}
-            <div className="w-full flex flex-col gap-6 justify-start items-start mt-10">
-              <div className="flex flex-col sm:flex-row justify-between w-full gap-2">
-                <h3 className="text-base sm:text-lg md:text-xl flex items-center gap-2">
-                  <i className="ri-graduation-cap-line text-orange-400 text-xl sm:text-2xl"></i>
-                  <span className="text-zinc-300 font-sans font-medium sm:font-semibold">
-                    Education - B.Tech in Computer Science, RGPV
-                  </span>
-                </h3>
-                <span className="text-base text-gray-400 sm:text-gray-100 mt-1 sm:mt-0">
-                  2021 - 2025
+            {/* Info Boxes */}
+            <div className="mt-10 space-y-6">
+              <div className="flex justify-between text-sm sm:text-base md:text-lg">
+                <span className="flex items-center gap-2">
+                  <i className="ri-graduation-cap-line text-rose-400 text-xl"></i>
+                  <span>B.Tech in Computer Science, RGPV</span>
                 </span>
+                <span className="text-gray-400">2021 - 2025</span>
               </div>
 
-              <div className="flex flex-col sm:flex-row justify-between w-full gap-2 sm:gap-0 mt-4">
-                <h3 className="text-base sm:text-lg md:text-xl font-medium sm:font-semibold flex items-center gap-2">
-                  <i className="ri-code-s-slash-line text-orange-400 text-xl sm:text-2xl"></i>
+              <div className="flex justify-between text-sm sm:text-base md:text-lg">
+                <span className="flex items-center gap-2">
+                  <i className="ri-code-s-slash-line text-rose-400 text-xl"></i>
                   Web Developer Intern | Nivss Heritage
-                </h3>
-                <span className="text-sm sm:text-base text-gray-400 sm:text-gray-100 mt-1 sm:mt-0">
-                  2024 - 2025
                 </span>
+                <span className="text-gray-400">2024 - 2025</span>
               </div>
 
-              <h3 className="text-base sm:text-lg md:text-xl flex items-center gap-2 mt-2">
-                <i className="ri-home-line text-orange-400 text-xl sm:text-2xl"></i>
-                <span className="text-gray-300 sm:text-white font-sans font-medium sm:font-semibold">
-                  Madhya Pradesh, India
-                </span>
-              </h3>
+              <div className="flex items-center gap-2 text-sm sm:text-base md:text-lg">
+                <i className="ri-home-line text-rose-400 text-xl"></i>
+                <span>Madhya Pradesh, India</span>
+              </div>
             </div>
           </div>
         </div>
@@ -157,12 +95,11 @@ const About = () => {
         {/* Buttons */}
         <div
           ref={buttonsRef}
-          id="buttons"
-          className="flex justify-around mt-20 mb-10 flex-wrap"
+          className="flex justify-center md:justify-around gap-4 mt-16 flex-wrap"
         >
           <a
             href="mailto:piyushsinghthakur128@gmail.com"
-            className="px-5 py-3 rounded-full text-base font-bold text-white bg-[#0ea5e9] shadow-[0_0_20px_4px_rgba(14,165,233,0.6)] hover:shadow-[0_0_25px_6px_rgba(14,165,233,0.8)] transition"
+            className="px-6 py-3 rounded-full text-base font-bold text-white bg-rose-500 shadow-[0_0_20px_4px_rgba(244,63,94,0.6)] hover:shadow-[0_0_25px_6px_rgba(244,63,94,0.8)] transition"
           >
             Hire me 👋
           </a>
@@ -170,9 +107,9 @@ const About = () => {
             href="https://github.com/piyushht2003"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-3 rounded-full flex text-base justify-center gap-2 items-center font-bold text-white bg-[#ef4444] shadow-[0_0_20px_4px_rgba(239,68,68,0.6)] hover:shadow-[0_0_25px_6px_rgba(239,68,68,0.8)] transition"
+            className="px-6 py-3 rounded-full flex items-center gap-2 text-base font-bold text-white bg-zinc-800 border border-zinc-600 hover:bg-zinc-700 transition"
           >
-            Watch my repo<i className="ri-github-fill text-xl"></i>
+            Watch my repo <i className="ri-github-fill text-xl"></i>
           </a>
         </div>
       </div>

@@ -345,15 +345,27 @@ const Hyperspeed = ({ effectOptions = {
     }
 
     class App {
-      constructor(container, options = {}) {
-        this.options = options;
-        if (this.options.distortion == null) {
-          this.options.distortion = {
-            uniforms: distortion_uniforms,
-            getDistortion: distortion_vertex
-          };
-        }
-        this.container = container;
+  constructor(container, options = {}) {
+    this.options = options;
+    if (this.options.distortion == null) {
+      this.options.distortion = {
+        uniforms: distortion_uniforms,
+        getDistortion: distortion_vertex
+      };
+    }
+    this.container = container;
+
+    // Bind event handlers once and store references for removal
+    this.boundOnWindowResize = this.onWindowResize.bind(this);
+    this.boundOnMouseDown = this.onMouseDown.bind(this);
+    this.boundOnMouseUp = this.onMouseUp.bind(this);
+
+    // Check container size before creating renderer
+    if (container.offsetWidth === 0 || container.offsetHeight === 0) {
+      console.warn("Container has zero width or height. Delaying renderer creation.");
+      this.renderer = null;
+    } else {
+      try {
         this.renderer = new THREE.WebGLRenderer({
           antialias: false,
           alpha: true
@@ -361,64 +373,76 @@ const Hyperspeed = ({ effectOptions = {
         this.renderer.setSize(container.offsetWidth, container.offsetHeight, false);
         this.composer = new EffectComposer(this.renderer);
         container.append(this.renderer.domElement);
-
-        this.camera = new THREE.PerspectiveCamera(
-          options.fov,
-          container.offsetWidth / container.offsetHeight,
-          0.1,
-          10000
-        );
-        this.camera.position.z = -5;
-        this.camera.position.y = 8;
-        this.camera.position.x = 0;
-        this.scene = new THREE.Scene();
-        this.scene.background = null;
-
-        let fog = new THREE.Fog(
-          options.colors.background,
-          options.length * 0.2,
-          options.length * 500
-        );
-        this.scene.fog = fog;
-        this.fogUniforms = {
-          fogColor: { value: fog.color },
-          fogNear: { value: fog.near },
-          fogFar: { value: fog.far }
-        };
-        this.clock = new THREE.Clock();
-        this.assets = {};
-        this.disposed = false;
-
-        this.road = new Road(this, options);
-        this.leftCarLights = new CarLights(
-          this,
-          options,
-          options.colors.leftCars,
-          options.movingAwaySpeed,
-          new THREE.Vector2(0, 1 - options.carLightsFade)
-        );
-        this.rightCarLights = new CarLights(
-          this,
-          options,
-          options.colors.rightCars,
-          options.movingCloserSpeed,
-          new THREE.Vector2(1, 0 + options.carLightsFade)
-        );
-        this.leftSticks = new LightsSticks(this, options);
-
-        this.fovTarget = options.fov;
-        this.speedUpTarget = 0;
-        this.speedUp = 0;
-        this.timeOffset = 0;
-
-        this.tick = this.tick.bind(this);
-        this.init = this.init.bind(this);
-        this.setSize = this.setSize.bind(this);
-        this.onMouseDown = this.onMouseDown.bind(this);
-        this.onMouseUp = this.onMouseUp.bind(this);
-
-        window.addEventListener("resize", this.onWindowResize.bind(this));
+      } catch (error) {
+        console.error("Error creating WebGLRenderer:", error);
+        this.renderer = null;
       }
+    }
+
+    if (this.renderer) {
+      this.camera = new THREE.PerspectiveCamera(
+        options.fov,
+        container.offsetWidth / container.offsetHeight,
+        0.1,
+        10000
+      );
+      this.camera.position.z = -5;
+      this.camera.position.y = 8;
+      this.camera.position.x = 0;
+      this.scene = new THREE.Scene();
+      this.scene.background = null;
+
+      let fog = new THREE.Fog(
+        options.colors.background,
+        options.length * 0.2,
+        options.length * 500
+      );
+      this.scene.fog = fog;
+      this.fogUniforms = {
+        fogColor: { value: fog.color },
+        fogNear: { value: fog.near },
+        fogFar: { value: fog.far }
+      };
+      this.clock = new THREE.Clock();
+      this.assets = {};
+      this.disposed = false;
+
+      this.road = new Road(this, options);
+      this.leftCarLights = new CarLights(
+        this,
+        options,
+        options.colors.leftCars,
+        options.movingAwaySpeed,
+        new THREE.Vector2(0, 1 - options.carLightsFade)
+      );
+      this.rightCarLights = new CarLights(
+        this,
+        options,
+        options.colors.rightCars,
+        options.movingCloserSpeed,
+        new THREE.Vector2(1, 0 + options.carLightsFade)
+      );
+      this.leftSticks = new LightsSticks(this, options);
+
+      this.fovTarget = options.fov;
+      this.speedUpTarget = 0;
+      this.speedUp = 0;
+      this.timeOffset = 0;
+
+      this.tick = this.tick.bind(this);
+      this.init = this.init.bind(this);
+      this.setSize = this.setSize.bind(this);
+    } else {
+      this.camera = null;
+      this.scene = null;
+      this.fogUniforms = null;
+      this.clock = null;
+      this.assets = null;
+      this.disposed = true;
+    }
+
+    window.addEventListener("resize", this.boundOnWindowResize);
+  }
 
       onWindowResize() {
         const width = this.container.offsetWidth;
@@ -568,43 +592,43 @@ const Hyperspeed = ({ effectOptions = {
         this.composer.render(delta);
       }
 
-      dispose() {
-        this.disposed = true;
-        
-        if (this.renderer) {
-          this.renderer.dispose();
-        }
-        if (this.composer) {
-          this.composer.dispose();
-        }
-        if (this.scene) {
-          this.scene.clear();
-        }
-        
-        window.removeEventListener("resize", this.onWindowResize.bind(this));
-        if (this.container) {
-          this.container.removeEventListener("mousedown", this.onMouseDown);
-          this.container.removeEventListener("mouseup", this.onMouseUp);
-          this.container.removeEventListener("mouseout", this.onMouseUp);
-        }
-      }
+  dispose() {
+    this.disposed = true;
+    
+    if (this.renderer) {
+      this.renderer.dispose();
+    }
+    if (this.composer) {
+      this.composer.dispose();
+    }
+    if (this.scene) {
+      this.scene.clear();
+    }
+    
+    window.removeEventListener("resize", this.boundOnWindowResize);
+    if (this.container) {
+      this.container.removeEventListener("mousedown", this.boundOnMouseDown);
+      this.container.removeEventListener("mouseup", this.boundOnMouseUp);
+      this.container.removeEventListener("mouseout", this.boundOnMouseUp);
+    }
+  }
 
       setSize(width, height, updateStyles) {
         this.composer.setSize(width, height, updateStyles);
       }
 
-      tick() {
-        if (this.disposed || !this) return;
-        if (resizeRendererToDisplaySize(this.renderer, this.setSize)) {
-          const canvas = this.renderer.domElement;
-          this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
-          this.camera.updateProjectionMatrix();
-        }
-        const delta = this.clock.getDelta();
-        this.render(delta);
-        this.update(delta);
-        requestAnimationFrame(this.tick);
-      }
+  tick() {
+    if (this.disposed || !this || !this.renderer) return;
+    if (resizeRendererToDisplaySize(this.renderer, this.setSize)) {
+      const canvas = this.renderer.domElement;
+      this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      this.camera.updateProjectionMatrix();
+    }
+    const delta = this.clock.getDelta();
+    this.render(delta);
+    this.update(delta);
+    requestAnimationFrame(this.tick);
+  }
     }
 
     const distortion_uniforms = {
@@ -1140,9 +1164,10 @@ const Hyperspeed = ({ effectOptions = {
     const leftRef = useRef(null);
     const rightRef = useRef(null);
   
-    useEffect(() => {
+  useEffect(() => {
+    if (leftRef.current && rightRef.current) {
       const tl = gsap.timeline({ defaults: { ease: "power2.out", duration: 1 } });
-  
+
       tl.fromTo(
         leftRef.current,
         { x: -100, opacity: 0 },
@@ -1153,7 +1178,8 @@ const Hyperspeed = ({ effectOptions = {
         { x: 0, opacity: 1 },
         "-=0.8" // Overlap a bit for smooth flow
       );
-    }, []);
+    }
+  }, []);
   
     function getRandomColor() {
       return colors[Math.floor(Math.random() * colors.length)];

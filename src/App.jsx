@@ -14,6 +14,10 @@ import "locomotive-scroll/dist/locomotive-scroll.css";
 import Lenis from "@studio-freight/lenis";
 import Hero from "./components/Hero";
 import HyperSpeed from "./components/Animation/HyperSpeed";
+import Education from "./components/Education";
+import Stats from "./components/Stats";
+import Certificate from "./components/Certificate";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   const lenis = useRef(null); // already declared
@@ -58,6 +62,7 @@ function App() {
         className="relative w-full bg-black"
         style={{ scrollBehavior: "smooth" }}
       >
+        <ErrorBoundary />
         <HyperSpeed
           effectOptions={{
             onSpeedUp: () => { },
@@ -110,8 +115,10 @@ function App() {
 
         <About />
         <Skills />
+        <Education />
         <Projects />
-
+        <Stats />
+        <Certificate />
         {/* <div
           id="certificates"
           className="min-h-screen bg-[#242724] w-full text-white py-16 px-10"
