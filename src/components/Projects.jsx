@@ -105,7 +105,7 @@ const Projects = () => {
       <img
         src={data.img}
         alt={data.title}
-        className="rounded-xl mb-4 w-full h-48 object-cover object-bottom group-hover:brightness-110 transition-all duration-300"
+        className="rounded-xl mb-4 w-full h-48 object-cover object-center group-hover:brightness-110 transition-all duration-300"
       />
       <h2 className="text-xl md:text-2xl font-semibold text-white group-hover:text-zinc-200 transition-colors duration-300">
         {data.title}
