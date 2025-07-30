@@ -1,32 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 const Navbar = ({ onScrollTop }) => {
   const navRef = useRef(null);
-  const [isScrollingDown, setIsScrollingDown] = useState(false);
-  const lastScrollTop = useRef(0);
 
   useEffect(() => {
-    // Navbar entrance animation
     gsap.fromTo(
       navRef.current,
       { y: -50, opacity: 0 },
       { y: 0, opacity: 1, duration: 1, ease: "power2.out" }
     );
-
-    // Scroll listener to detect scroll direction
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      if (scrollY > lastScrollTop.current) {
-        setIsScrollingDown(true); // Scrolling down
-      } else {
-        setIsScrollingDown(false); // Scrolling up
-      }
-      lastScrollTop.current = scrollY <= 0 ? 0 : scrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -43,18 +26,14 @@ const Navbar = ({ onScrollTop }) => {
         <p>Singh Thakur</p>
       </div>
 
-      {/* Scroll Direction Arrow Button */}
+      {/* Scroll To Top Button */}
       <div className="absolute left-1/2 -translate-x-1/2 top-3 sm:top-4">
         <button
           data-lenis-prevent
           onClick={onScrollTop}
           className="w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 text-xl sm:text-2xl md:text-3xl rounded-full border border-white flex items-center justify-center hover:bg-white hover:text-black transition duration-300"
         >
-          <i
-            className={`ri-arrow-up-line transition-transform duration-300 ${
-              isScrollingDown ? "rotate-180" : "rotate-0"
-            }`}
-          ></i>
+          <i className="ri-arrow-up-long-line font-serif"></i>
         </button>
       </div>
 
