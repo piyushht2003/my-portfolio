@@ -1,4 +1,11 @@
 @import "tailwindcss";
+@font-face {
+  font-family: 'Azonix';
+  src: url('C:\Users\LENOVO\Desktop\Portfolio\my-portfolio\public\fonts\Azonix.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 [data-scroll-container] {
   overflow: hidden;

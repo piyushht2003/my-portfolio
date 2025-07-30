@@ -12,26 +12,28 @@ const About = () => {
   const buttonsRef = useRef(null);
 
   useEffect(() => {
-    const fadeIn = (ref, direction = "y", distance = 50, start = "top 85%") => {
-      const from = direction === "y" ? { y: distance, opacity: 0 } : { x: distance, opacity: 0 };
-      const to = direction === "y" ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 };
+  const elements = [headingRef, bioRef, cardRef, buttonsRef];
 
-      gsap.fromTo(ref.current, from, {
-        ...to,
-        duration: 1.2,
+  gsap.set(elements.map(ref => ref.current), { y: 50, opacity: 0 });
+
+  ScrollTrigger.batch(elements.map(ref => ref.current), {
+    start: "top 85%",
+    onEnter: batch => {
+      gsap.to(batch, {
+        y: 0,
+        opacity: 1,
+        duration: 1,
         ease: "power3.out",
-        scrollTrigger: {
-          trigger: ref.current,
-          start,
-        },
+        stagger: 0.2,
       });
-    };
+    },
+  });
 
-    fadeIn(headingRef);
-    fadeIn(bioRef, "x", 100);
-    fadeIn(cardRef, "x", -100);
-    fadeIn(buttonsRef, "y", 50, "top 90%");
-  }, []);
+  return () => {
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  };
+}, []);
+
 
   return (
     <section id="about" className="bg-zinc-900 w-full px-4 sm:px-6 md:px-10 py-16">

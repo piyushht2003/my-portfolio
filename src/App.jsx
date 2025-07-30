@@ -26,6 +26,29 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   const lenis = useRef(null);
 
+   useEffect(() => {
+    const lenis = new Lenis();
+    window.lenis = lenis; // Make globally accessible
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }, []);
+
+   useEffect(() => {
+    const lenis = new Lenis();
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }, []);
+
   useEffect(() => {
     // Initialize Lenis
     lenis.current = new Lenis({
@@ -66,7 +89,7 @@ function App() {
       <main className="relative w-full bg-black text-white">
         <ErrorBoundary>
           {/* Animated background effect */}
-          <HyperSpeed
+          {/* <HyperSpeed
             effectOptions={{
               onSpeedUp: () => {},
               onSlowDown: () => {},
@@ -104,10 +127,10 @@ function App() {
                 sticks: 0x03b3c3,
               },
             }}
-          />
+          /> */}
 
           {/* Main sections */}
-          {/* <Hero /> */}
+          <Hero />
           <About />
           <Skills />
           <Education />

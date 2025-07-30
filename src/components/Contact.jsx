@@ -81,7 +81,7 @@ const Contact = () => {
     //     </form>
     //   </div>
     // </div>
-    <div className=" flex flex-col justify-start items-center py-10 px-5 bg-[#1a1d1a]">
+    <div id='contact' className=" flex flex-col justify-start items-center py-10 px-5 bg-[#1a1d1a]">
       <h1 className="text-white font-bold text-4xl sm:text-4xl md:text-9xl text-center leading-snug">
         you can get in touch<br />
         with me via{" "}
