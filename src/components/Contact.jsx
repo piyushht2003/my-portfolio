@@ -85,7 +85,7 @@ const Contact = () => {
       <h1 className="text-white font-bold text-4xl sm:text-4xl md:text-9xl text-center leading-snug">
         you can get in touch<br />
         with me via{" "}
-        <a href="mailto:piyushsinghthakur128@gmail.com">
+        <a href="mailto:piyushsinghthakur.work@gmail.com">
           <span className="text-[#FF6C6C] relative group cursor-pointer">
           mail
           <span className="absolute left-0 top-1/2 w-full h-[2px] bg-current transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rotate-12"></span>
