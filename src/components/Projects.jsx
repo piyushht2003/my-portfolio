@@ -65,11 +65,11 @@ const Projects = () => {
 
   const projects = [
     {
-      title: "Worktrack",
-      img: "images/worktrack.png",
-      desc: "An employee management application to keep track of the assignments and tasks of the employees. (Visit Github)",
-      github: "https://github.com/piyushht2003/WorkTrack-Employee-Management-System",
-      live: "https://work-track-employee-management-syst.vercel.app/",
+      title: "Spylt",
+      img: "images/spylt.png",
+      desc: "This project showcases a premium website that won Awwwards Site of the Day.",
+      github: "https://github.com/piyushht2003/Awwards-Spylt",
+      live: "https://awwards-spylt.vercel.app/",
     },
     {
       title: "Zentry - The Metagame",
@@ -94,6 +94,13 @@ const Projects = () => {
       desc: "A Hotel management application where you can book your hotel rooms and manage your hotel business.",
       github: "https://github.com/piyushht2003/hotel-management-app",
       live: "https://quickstay-rose.vercel.app/",
+    },
+    {
+      title: "Worktrack",
+      img: "images/worktrack.png",
+      desc: "An employee management application to keep track of the assignments and tasks of the employees. (Visit Github)",
+      github: "https://github.com/piyushht2003/WorkTrack-Employee-Management-System",
+      live: "https://work-track-employee-management-syst.vercel.app/",
     },
   ];
 
@@ -142,7 +149,7 @@ const Projects = () => {
           ref={fullStackHeadingRef}
           className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-12 font-bold leading-tight"
         >
-          FullStack <span className="text-sky-500 block">projects</span>
+          Functional <span className="text-sky-500 block">projects</span>
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-20 gap-8 md:gap-10">
           {fullStack.map((proj, i) => (
@@ -157,7 +164,7 @@ const Projects = () => {
           ref={frontendHeadingRef}
           className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-12 font-bold leading-tight"
         >
-          Frontend <span className="text-rose-500 block">projects</span>
+          Animated <span className="text-rose-500 block">projects</span>
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-20 gap-8 md:gap-10">
           {projects.map((proj, i) => (
