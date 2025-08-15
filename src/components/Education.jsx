@@ -108,8 +108,11 @@ const Education = () => {
               className="mb-16 relative group"
             >
               {/* Dots */}
-              <div className="absolute w-4 h-4 bg-rose-400 rounded-full left-[-11px] top-2 shadow-md shadow-rose-500 animate-pulse z-10" />
-              <div className="absolute w-2.5 h-2.5 bg-white rounded-full left-[-8.5px] top-[10px] z-20" />
+              <div className="flex items-center justify-center absolute left-[-20px] top-0">
+
+              <div className="absolute w-4 h-4 bg-rose-400 rounded-full left-[-11px] top-2 shadow-md shadow-rose-500  z-10" />
+              <div className="absolute w-2.5 h-2.5 bg-white rounded-full left-[-8.2px] top-[11px] z-20" />
+              </div>
 
               {/* Card */}
               <div className="backdrop-blur-2xl bg-zinc-800/60 border border-zinc-700/50 shadow-xl hover:shadow-rose-500/30 transition-all duration-500 p-6 rounded-3xl overflow-hidden">
