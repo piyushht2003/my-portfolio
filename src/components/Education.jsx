@@ -94,10 +94,10 @@ const Education = () => {
           My <span className="text-rose-400">Education Journey</span>
         </h1>
 
-        <div className="relative border-l-2 border-rose-500/40 pl-6">
+        <div className="relative border-l-5 border-rose-500/40 pl-6">
           <div
             ref={lineRef}
-            className="absolute top-0 left-[-1px] w-1 bg-rose-500 origin-top"
+            className="absolute top-0 left-[-4px] w-1 bg-rose-500 origin-top"
             style={{ zIndex: 0 }}
           />
 
@@ -108,10 +108,10 @@ const Education = () => {
               className="mb-16 relative group"
             >
               {/* Dots */}
-              <div className="flex items-center justify-center absolute left-[-20px] top-0">
+              <div className="flex items-center justify-center absolute left-[-23px] top-0">
 
-              <div className="absolute w-4 h-4 bg-rose-400 rounded-full left-[-11px] top-2 shadow-md shadow-rose-500  z-10" />
-              <div className="absolute w-2.5 h-2.5 bg-white rounded-full left-[-8.2px] top-[11px] z-20" />
+              <div className="absolute w-4 h-4 bg-rose-400 rounded-full left-[-11px] top-2 shadow-md shadow-rose-500 animate-pulse z-10" />
+              <div className="absolute w-2.5 h-2.5 bg-white rounded-full left-[-8.6px] top-[11px] z-20" />
               </div>
 
               {/* Card */}
