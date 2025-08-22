@@ -85,6 +85,13 @@ const Projects = () => {
       github: "https://github.com/piyushht2003/Lazarev",
       live: "https://lazarev-gray-sigma.vercel.app/",
     },
+    {
+      title: "Awwards Level Portfolio",
+      img: "images/awwards.png",
+      desc: "Built with React, GSAP, Three.js, TailwindCSS Inspired by Awwwards-level sites — built with React (Vite), TailwindCSS, GSAP, React Three Fiber, and Drei.",
+      github: "https://github.com/piyushht2003/Awwards-level-portfolio",
+      live: "https://awwards-level-portfolio.vercel.app/",
+    },
   ];
 
   const fullStack = [
