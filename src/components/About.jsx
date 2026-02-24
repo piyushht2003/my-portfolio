@@ -65,7 +65,7 @@ const About = () => {
                <span className="text-5xl text-gray-300">Hi, I’m Piyush Singh Thakur</span>  a Full Stack Web Developer with a knack for building intuitive, fast, and responsive web applications. My focus lies in crafting seamless user experiences with clean, scalable code.
             </p>
             <p className="text-lg md:text-xl text-zinc-500 text-justify lg:text-2xl font-medium tracking-wide">
-              With hands-on experience in <span className="text-gray-400">MERN stack, REST APIs, and UI/UX design,</span> I love exploring new technologies and contributing to open-source projects. I'm currently sharpening my skills in Java and aiming to crack top tech companies like Google.
+              With hands-on experience in <span className="text-gray-400">MERN stack, REST APIs, and UI/UX design,</span> I love exploring new technologies and contributing to open-source projects. I’m currently sharpening my Java skills with the goal of landing a software engineering role at a leading tech organization.
             </p>
 
             {/* Info Boxes */}
